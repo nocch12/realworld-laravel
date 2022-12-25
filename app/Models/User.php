@@ -41,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    
+    public function getJWTIdentifier()
+    {
+        // JWT トークンに保存する ID を返す
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        // JWT トークンに埋め込む追加の情報を返す
+        return [];
+    }
 }
