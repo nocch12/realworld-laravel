@@ -3,43 +3,24 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\User\LoginRequest;
+use App\Http\Resources\UserResource;
 
 class LoginAction extends Controller
 {
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\User\LoginRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(LoginRequest $request)
     {
-        $credentials = request(['email', 'password']);
-
-        logger('err', $credentials);
-
-        if (! $token = auth()->attempt($credentials)) {
+        if (! $token = auth()->attempt($request->validated())) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);
-    }
-
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'user' => [
-                'token' => $token,
-                ...auth()->user()->toArray(),
-            ],
-        ]);
+        return (new UserResource(auth()->user()))
+            ->withToken($token);
     }
 }
