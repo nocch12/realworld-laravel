@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\LoginAction;
 use App\Http\Controllers\User\RegisterAction;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,11 +18,19 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', fn () => 'hello');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::prefix('users')
+    ->name('users.')
+    ->controller(UserController::class)
+    ->group(function () {
+        Route::post('/', 'register')->name('register');
+        Route::post('login', 'login')->name('login');
+    });
 
-Route::prefix('users')->group(function () {
-    Route::post('/', RegisterAction::class);
-    Route::post('login', LoginAction::class);
-});
+Route::prefix('user')
+    ->name('user.')
+    ->middleware('auth:api')
+    ->controller(UserController::class)
+    ->group(function () {
+        Route::get('/', 'me')->name('me');
+        Route::post('/', 'update')->name('update');
+    });
