@@ -16,7 +16,7 @@ class LoginAction extends Controller
      */
     public function __invoke(LoginRequest $request)
     {
-        if (! $token = auth()->attempt($request->validated())) {
+        if (! $token = auth()->attempt($request->userRequest())) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
