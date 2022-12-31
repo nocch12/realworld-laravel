@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\RegisterRequest;
+use App\Http\Requests\User\UpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class UserController extends Controller
     }
     
     /**
-     * ログイン中のユーザ情報
+     * ログイン中のユーザ情報取得
      *
      * @param  App\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -59,6 +60,29 @@ class UserController extends Controller
     public function me(Request $request)
     {
         return (new UserResource(auth()->user()))
+            ->withToken($request->bearerToken());
+    }
+    
+    /**
+     * ログイン中のユーザ情報更新
+     *
+     * @param  App\Http\Requests\User\UpdateRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateRequest $request)
+    {
+        $user = auth()->user();
+
+        $updates = $request->input('user');
+        
+        if ($request->has('password')) {
+            $updates['password'] = Hash::make($request->input('password'));
+        }
+
+        $user->fill($updates);
+        $user->save();
+        
+        return (new UserResource($user))
             ->withToken($request->bearerToken());
     }
 }

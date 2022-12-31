@@ -2,11 +2,13 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response as StatusCode;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -68,6 +70,14 @@ class Handler extends ExceptionHandler
                             ],
                         ];
                         break;
+                    // 認証エラー
+                    case $e instanceof AuthenticationException:
+                        $code = StatusCode::HTTP_UNAUTHORIZED;
+                        break;
+                    // 不明なルート
+                    case $e instanceof RouteNotFoundException:
+                        $code = StatusCode::HTTP_NOT_FOUND;
+                        break;
                     case $e instanceof HttpException:
                         /** @var HttpException $e */
                         $code = $e->getStatusCode();
@@ -76,6 +86,7 @@ class Handler extends ExceptionHandler
                         break;
                 }
 
+                logger('ex', [$e::class]);
                 return response()->json($data, $code);
             }
             return;
