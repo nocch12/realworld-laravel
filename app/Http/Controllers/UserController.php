@@ -36,18 +36,16 @@ class UserController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $user = $request->userRequest();
-        $u = User::create([
-            'username' => $user['username'],
-            'email' => $user['email'],
-            'password' => Hash::make($user['password']),
+        $params = $request->userRequest();
+        $user = User::create([
+            'username' => $params['username'],
+            'email' => $params['email'],
+            'password' => Hash::make($params['password']),
         ]);
 
-        if (! $token = auth()->attempt($user)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
+        $token = auth()->attempt($params);
 
-        return (new UserResource(auth()->user()))
+        return (new UserResource($user))
             ->withToken($token);
     }
     
@@ -73,13 +71,13 @@ class UserController extends Controller
     {
         $user = auth()->user();
 
-        $updates = $request->input('user');
+        $params = $request->userRequest();
         
-        if ($request->has('password')) {
-            $updates['password'] = Hash::make($request->input('password'));
+        if (!empty($params['password'])) {
+            $params['password'] = Hash::make($params['password']);
         }
 
-        $user->fill($updates);
+        $user->fill($params);
         $user->save();
         
         return (new UserResource($user))

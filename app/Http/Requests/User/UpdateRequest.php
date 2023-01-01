@@ -31,4 +31,9 @@ class UpdateRequest extends FormRequest
             'user.bio'      => 'nullable',
         ];
     }
+    
+    public function userRequest()
+    {
+        return $this->validated('user');
+    }
 }

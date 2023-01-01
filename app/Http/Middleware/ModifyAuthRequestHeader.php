@@ -21,7 +21,6 @@ class ModifyAuthRequestHeader
     public function handle(Request $request, Closure $next)
     {
         $authHeader = $request->headers->get(self::AUTH_HEADER);
-        
         // 元から'Bearer'で送られてきたトークンは破棄
         if (strpos($authHeader, self::TOKEN_PREFIX_AFTER) === 0) {
             // 'Token'を削除
