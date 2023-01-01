@@ -86,7 +86,6 @@ class Handler extends ExceptionHandler
                         break;
                 }
 
-                logger('ex', [$e::class]);
                 return response()->json($data, $code);
             }
             return;

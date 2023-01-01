@@ -7,8 +7,10 @@ use App\Http\Requests\User\RegisterRequest;
 use App\Http\Requests\User\UpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Usecases\User\UpdateAction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -21,7 +23,9 @@ class UserController extends Controller
     public function login(LoginRequest $request)
     {
         if (! $token = auth()->attempt($request->userRequest())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            throw ValidationException::withMessages([
+                trans('auth.faild'),
+            ]);
         }
 
         return (new UserResource(auth()->user()))
@@ -67,18 +71,13 @@ class UserController extends Controller
      * @param  App\Http\Requests\User\UpdateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request)
+    public function update(UpdateRequest $request, UpdateAction $action)
     {
         $user = auth()->user();
 
         $params = $request->userRequest();
-        
-        if (!empty($params['password'])) {
-            $params['password'] = Hash::make($params['password']);
-        }
 
-        $user->fill($params);
-        $user->save();
+        $user = $action($user, $params);
         
         return (new UserResource($user))
             ->withToken($request->bearerToken());
