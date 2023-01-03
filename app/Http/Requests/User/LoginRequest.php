@@ -29,8 +29,13 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    public function userRequest()
+    public function email()
     {
-        return $this->validated('user');
+        return $this->validated('user.email');
+    }
+
+    public function password()
+    {
+        return $this->validated('user.password');
     }
 }

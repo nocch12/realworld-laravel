@@ -6,11 +6,11 @@ use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\RegisterRequest;
 use App\Http\Requests\User\UpdateRequest;
 use App\Http\Resources\UserResource;
-use App\Models\User;
+use App\UseCases\User\LoginAction;
+use App\UseCases\User\RegisterAction;
 use App\Usecases\User\UpdateAction;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -18,41 +18,32 @@ class UserController extends Controller
      * ログイン.
      *
      * @param  \App\Http\Requests\User\LoginRequest  $request
+     * @param  \App\Usecases\User\LoginAction  $action
      * @return \Illuminate\Http\Response
      */
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request, LoginAction $action)
     {
-        if (! $token = auth()->attempt($request->userRequest())) {
-            throw ValidationException::withMessages([
-                trans('auth.faild'),
-            ]);
-        }
+        $action($request->email(), $request->password());
 
-        return (new UserResource(auth()->user()))
-            ->withToken($token);
+        return (new UserResource(Auth::user()))
+            ->withToken(Auth::getToken());
     }
-    
+
     /**
      * ユーザ登録.
      *
      * @param  App\Http\Requests\User\RegisterRequest  $request
+     * @param  \App\Usecases\User\RegisterAction  $action
      * @return \Illuminate\Http\Response
      */
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request, RegisterAction $action)
     {
-        $params = $request->userRequest();
-        $user = User::create([
-            'username' => $params['username'],
-            'email' => $params['email'],
-            'password' => Hash::make($params['password']),
-        ]);
+        $user = $action($request->makeUser());
 
-        $token = auth()->attempt($params);
-
-        return (new UserResource($user))
-            ->withToken($token);
+        return (new UserResource(Auth::user()))
+            ->withToken(Auth::getToken());
     }
-    
+
     /**
      * ログイン中のユーザ情報取得
      *
@@ -61,10 +52,10 @@ class UserController extends Controller
      */
     public function me(Request $request)
     {
-        return (new UserResource(auth()->user()))
-            ->withToken($request->bearerToken());
+        return (new UserResource(Auth::user()))
+            ->withToken(Auth::getToken());
     }
-    
+
     /**
      * ログイン中のユーザ情報更新
      *
@@ -73,13 +64,9 @@ class UserController extends Controller
      */
     public function update(UpdateRequest $request, UpdateAction $action)
     {
-        $user = auth()->user();
+        $action(Auth::user(), $request->userRequest());
 
-        $params = $request->userRequest();
-
-        $user = $action($user, $params);
-        
-        return (new UserResource($user))
-            ->withToken($request->bearerToken());
+        return (new UserResource(Auth::user()))
+            ->withToken(Auth::getToken());
     }
 }

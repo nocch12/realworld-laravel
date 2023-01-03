@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\User;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterRequest extends FormRequest
 {
@@ -29,9 +31,15 @@ class RegisterRequest extends FormRequest
             'user.username' => 'required',
         ];
     }
-    
-    public function userRequest()
+
+    public function makeUser()
     {
-        return $this->validated('user');
+        $params = $this->validated('user');
+
+        return new User([
+            'username' => $params['username'],
+            'email' => $params['email'],
+            'password' => Hash::make($params['password']),
+        ]);
     }
 }
