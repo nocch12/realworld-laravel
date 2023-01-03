@@ -56,19 +56,14 @@ class Handler extends ExceptionHandler
         $this->renderable(function (Throwable $e, Request $request) {
             if ($request->is('api/*')) {
                 $data = [];
-                $errorBody = [];
-                $code = 500;
+                $code = StatusCode::HTTP_INTERNAL_SERVER_ERROR;
 
                 switch (true) {
                     // バリデーションエラー
                     case $e instanceof ValidationException:
                         /** @var ValidationException $e */
                         $code = $e->status;
-                        $data = [
-                            'errors' => [
-                                'body' => $e->errors(),
-                            ],
-                        ];
+                        $data = $this->errorData($e->errors());
                         break;
                     // 認証エラー
                     case $e instanceof AuthenticationException:
@@ -81,6 +76,7 @@ class Handler extends ExceptionHandler
                     case $e instanceof HttpException:
                         /** @var HttpException $e */
                         $code = $e->getStatusCode();
+                        $data = $this->errorData($e->getMessage());
                         break;
                     default:
                         break;
@@ -90,5 +86,23 @@ class Handler extends ExceptionHandler
             }
             return;
         });
+    }
+
+    public function errorData(string|array $error): array
+    {
+        $errors = [];
+        if (!$error) {
+            return $errors;
+        }
+
+        if (is_string($error)) {
+            $errors[] = $error;
+        } elseif (is_array($error)) {
+            $errors = $error;
+        }
+
+        return [
+            'errors' => $errors,
+        ];
     }
 }
