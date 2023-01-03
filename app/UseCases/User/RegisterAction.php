@@ -24,7 +24,7 @@ final class RegisterAction
         }
 
         throw ValidationException::withMessages([
-            trans('auth.faild'),
+            trans('auth.failed'),
         ]);
     }
 }

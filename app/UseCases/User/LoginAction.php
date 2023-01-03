@@ -20,13 +20,13 @@ final class LoginAction
     {
         $user = User::where('email', $email)->first();
 
-        if (Hash::check($password, $user->password)) {
+        if ($user && Hash::check($password, $user->password)) {
             Auth::login($user);
             return $user;
         }
 
         throw ValidationException::withMessages([
-            trans('auth.faild'),
+            trans('auth.failed'),
         ]);
     }
 }
