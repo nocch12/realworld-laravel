@@ -32,5 +32,5 @@ Route::prefix('user')
     ->controller(UserController::class)
     ->group(function () {
         Route::get('/', 'me')->name('me');
-        Route::post('/', 'update')->name('update');
+        Route::put('/', 'update')->name('update');
     });
