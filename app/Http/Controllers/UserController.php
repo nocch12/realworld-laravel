@@ -8,7 +8,7 @@ use App\Http\Requests\User\UpdateRequest;
 use App\Http\Resources\UserResource;
 use App\UseCases\User\LoginAction;
 use App\UseCases\User\RegisterAction;
-use App\Usecases\User\UpdateAction;
+use App\UseCases\User\UpdateAction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
