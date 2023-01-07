@@ -4,6 +4,7 @@ namespace App\UseCases\User;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
 final class RegisterAction
@@ -16,9 +17,22 @@ final class RegisterAction
      */
     public function __invoke(User $user): User
     {
-        $user->save();
+        // 重複チェック
+        $validator = Validator::make(
+            [
+                'username' => $user->username,
+                'email'    => $user->email,
+            ],
+            [
+                'username' => 'unique:users,username',
+                'email' => 'unique:users,email',
+            ],
+        );
+        $validator->validate();
 
-        if ($user->save()) {
+        $saved = $user->save();
+
+        if ($saved) {
             Auth::login($user);
             return $user;
         }
