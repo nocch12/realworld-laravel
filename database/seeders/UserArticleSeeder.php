@@ -18,9 +18,10 @@ class UserArticleSeeder extends Seeder
     public function run()
     {
         User::query()->delete();
+        Article::query()->delete();
 
         User::factory()->create([
-            'username' => 'Test User',
+            'username' => 'TestUser',
             'email' => 'test@example.com',
         ]);
 

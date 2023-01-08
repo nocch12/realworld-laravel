@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\LoginAction;
 use App\Http\Controllers\User\RegisterAction;
 use App\Http\Controllers\UserController;
@@ -33,4 +34,11 @@ Route::prefix('user')
     ->group(function () {
         Route::get('/', 'me')->name('me');
         Route::put('/', 'update')->name('update');
+    });
+
+Route::prefix('profiles')
+    ->name('profiles.')
+    ->controller(ProfileController::class)
+    ->group(function () {
+        Route::get('/{user}', 'show')->name('show');
     });

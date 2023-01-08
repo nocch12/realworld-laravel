@@ -47,6 +47,11 @@ class User extends Authenticatable implements JWTSubject
         'remember_token',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'username';
+    }
+
     /**
      * The attributes that should be cast.
      *
@@ -56,26 +61,56 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * 記事
+     *
+     * @return HasMany
+     */
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class, 'author_id');
     }
 
+    /**
+     * お気に入りした記事
+     *
+     * @return BelongsToMany
+     */
     public function favoritedArticles(): BelongsToMany
     {
         return $this->belongsToMany(Article::class);
     }
 
+    /**
+     * フォロワー
+     *
+     * @return BelongsToMany
+     */
     public function followers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_follower', 'user_id', 'follower_id');
     }
 
+    /**
+     * フォロー
+     *
+     * @return BelongsToMany
+     */
     public function following(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_follower', 'follower_id', 'user_id');
     }
 
+    /**
+     * フォローされているか
+     *
+     * @param integer $id ユーザid
+     * @return boolean
+     */
+    public function isFollowed(int $id): bool
+    {
+        return $this->followers()->where('id', $id)->exists();
+    }
 
     public function getJWTIdentifier()
     {

@@ -16,6 +16,7 @@ class TagSeeder extends Seeder
     public function run()
     {
         Tag::query()->delete();
+
         Tag::factory(20)->create();
     }
 }
