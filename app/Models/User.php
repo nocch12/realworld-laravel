@@ -58,7 +58,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function articles(): HasMany
     {
-        return $this->hasMany(Article::class);
+        return $this->hasMany(Article::class, 'author_id');
     }
 
     public function favoritedArticles(): BelongsToMany
