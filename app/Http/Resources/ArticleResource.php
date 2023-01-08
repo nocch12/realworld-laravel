@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use \App\Models\Article;
+use Auth;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ArticleResource extends JsonResource
@@ -24,9 +25,9 @@ class ArticleResource extends JsonResource
             'tagList'        => $this->tags->pluck('name'),
             'createdAt'      => $this->created_at,
             'updatedAt'      => $this->updated_at,
-            'favorited'      => false,
-            'favoritesCount' => 0,
-            'author'         => []
+            'favorited'      => Auth::check() ? $this->isFavoritedBy(Auth::user()->id) : false,
+            'favoritesCount' => $this->favoritedUsers->count(),
+            'author'         => new ProfileResource($this->author)
         ];
     }
 }

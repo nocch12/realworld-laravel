@@ -37,6 +37,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\User $author
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $favoritedUsers
+ * @property-read int|null $favorited_users_count
  */
 class Article extends Model
 {
@@ -66,6 +69,16 @@ class Article extends Model
     public function favoritedUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'article_favorite', 'user_id', 'article_id');
+    }
+
+    /**
+     * お気に入りされているか
+     *
+     * @return bool
+     */
+    public function isFavoritedBy(int $userId): bool
+    {
+        return $this->favoritedUsers()->where('id', $userId)->exists();
     }
 
     public function tags(): BelongsToMany

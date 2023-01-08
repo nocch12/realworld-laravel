@@ -48,6 +48,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Article[] $favoriteArticles
+ * @property-read int|null $favorite_articles_count
  */
 class User extends Authenticatable implements JWTSubject
 {
