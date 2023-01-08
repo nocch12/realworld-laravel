@@ -1,10 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\User\LoginAction;
-use App\Http\Controllers\User\RegisterAction;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +26,6 @@ Route::prefix('users')
 
 Route::prefix('user')
     ->name('user.')
-    ->middleware('auth:api')
     ->controller(UserController::class)
     ->group(function () {
         Route::get('/', 'me')->name('me');
@@ -41,4 +37,6 @@ Route::prefix('profiles')
     ->controller(ProfileController::class)
     ->group(function () {
         Route::get('/{user}', 'show')->name('show');
+        Route::post('/{user}/follow', 'follow')->name('follow');
+        Route::delete('/{user}/follow', 'unfollow')->name('unfollow');
     });
