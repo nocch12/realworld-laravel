@@ -53,9 +53,19 @@ class Article extends Model
         'body',
     ];
 
-    public function user(): BelongsTo
+    public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
+    }
+
+    /**
+     * お気に入りされたユーザ
+     *
+     * @return BelongsToMany
+     */
+    public function favoritedUsers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'article_favorite', 'user_id', 'article_id');
     }
 
     public function tags(): BelongsToMany

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', fn () => 'hello');
 
+// /users/*
 Route::prefix('users')
     ->name('users.')
     ->controller(UserController::class)
@@ -24,6 +26,7 @@ Route::prefix('users')
         Route::post('login', 'login')->name('login');
     });
 
+// /user/*
 Route::prefix('user')
     ->name('user.')
     ->controller(UserController::class)
@@ -32,6 +35,7 @@ Route::prefix('user')
         Route::put('/', 'update')->name('update');
     });
 
+// /profiles/*
 Route::prefix('profiles')
     ->name('profiles.')
     ->controller(ProfileController::class)
@@ -39,4 +43,12 @@ Route::prefix('profiles')
         Route::get('/{user}', 'show')->name('show');
         Route::post('/{user}/follow', 'follow')->name('follow');
         Route::delete('/{user}/follow', 'unfollow')->name('unfollow');
+    });
+
+// /articles/*
+Route::prefix('articles')
+    ->name('articles.')
+    ->controller(ArticleController::class)
+    ->group(function () {
+        Route::get('/', 'list')->name('list');
     });
