@@ -18,8 +18,8 @@ class ArticleFactory extends Factory
     {
         $title = $this->faker->unique()->sentence(3);
         return [
-            'title'       => $title,
-            'slug'        => $title,
+            'title'       => $this->faker->sentence(3),
+            'slug'        => $this->faker->unique()->slug(3),
             'description' => $this->faker->sentence(10),
             'body'        => $this->faker->text(),
         ];

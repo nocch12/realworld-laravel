@@ -51,4 +51,7 @@ Route::prefix('articles')
     ->controller(ArticleController::class)
     ->group(function () {
         Route::get('/', 'list')->name('list');
+        Route::post('/', 'store')->name('store');
+        Route::get('/feed', 'feed')->name('feed');
+        Route::get('/{article}', 'show')->name('show');
     });

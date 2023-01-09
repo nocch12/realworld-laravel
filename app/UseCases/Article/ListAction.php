@@ -34,7 +34,7 @@ final class ListAction
             });
         }
 
-        $builder->skip(($offset))->take($limit);
+        $builder->orderBy('created_at')->skip(($offset))->take($limit);
 
         return $builder->get();
     }
