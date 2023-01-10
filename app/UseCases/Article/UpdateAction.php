@@ -11,7 +11,6 @@ final class UpdateAction
 
     public function __invoke(Article $article)
     {
-        logger('a', [$article]);
         if ($article->isDirty('title')) {
             $article->slug = $this->makeSlug($article->title);
         }

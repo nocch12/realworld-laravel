@@ -67,6 +67,7 @@ class ArticleController extends Controller
 
     public function update(UpdateRequest $request, Article $article, UpdateAction $action)
     {
+        $this->authorize('update', $article);
         $article = $action($request->makeArticle($article));
         return new ArticleResource($article);
     }
