@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Article\FeedRequest;
 use App\Http\Requests\Article\ListRequest;
 use App\Http\Requests\Article\StoreRequest;
+use App\Http\Requests\Article\UpdateRequest;
 use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use App\UseCases\Article\FeedAction;
 use App\UseCases\Article\ListAction;
 use App\UseCases\Article\StoreAction;
+use App\UseCases\Article\UpdateAction;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ArticleController extends Controller
@@ -60,6 +62,12 @@ class ArticleController extends Controller
     public function store(StoreRequest $request, StoreAction $action)
     {
         $article = $action($request->makeArticle(), $request->makeTags());
+        return new ArticleResource($article);
+    }
+
+    public function update(UpdateRequest $request, Article $article, UpdateAction $action)
+    {
+        $article = $action($request->makeArticle($article));
         return new ArticleResource($article);
     }
 }

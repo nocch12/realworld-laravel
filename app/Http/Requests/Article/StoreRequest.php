@@ -45,9 +45,6 @@ class StoreRequest extends FormRequest
 
     public function makeTags()
     {
-        $tags = $this->validated('article.tagList', []);
-        return collect($tags)->each(function (string $name) {
-            return new Tag(['name' => $name]);
-        });
+        return collect($this->validated('article.tagList', []));
     }
 }

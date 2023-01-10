@@ -10,6 +10,8 @@ use Illuminate\Support\Collection;
 
 final class StoreAction
 {
+    use MakeSlugTrait;
+
     public function __invoke(Article $article, Collection $tags)
     {
         $article->author_id = Auth::user()->id;
@@ -29,10 +31,5 @@ final class StoreAction
         }
 
         return $article->refresh();
-    }
-
-    private function makeSlug(string $title)
-    {
-        return strtolower(preg_replace('/　|\s+/', '-', $title));
     }
 }

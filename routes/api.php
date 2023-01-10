@@ -54,4 +54,5 @@ Route::prefix('articles')
         Route::post('/', 'store')->name('store');
         Route::get('/feed', 'feed')->name('feed');
         Route::get('/{article}', 'show')->name('show');
+        Route::put('/{article}', 'update')->name('update');
     });
