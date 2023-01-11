@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -56,4 +57,14 @@ Route::prefix('articles')
         Route::get('/{article}', 'show')->name('show');
         Route::put('/{article}', 'update')->name('update');
         Route::delete('/{article}', 'destroy')->name('destroy');
+    });
+
+// /articles/:slug/comments/*
+Route::prefix('articles')
+    ->name('comments.')
+    ->controller(CommentController::class)
+    ->group(function () {
+        Route::get('/{article}/comments', 'list')->name('list');
+        Route::post('/{article}/comments', 'store')->name('store');
+        Route::delete('/{article}/comments/{id}', 'destroy')->name('destroy');
     });
