@@ -8,6 +8,7 @@ use App\Http\Requests\Article\StoreRequest;
 use App\Http\Requests\Article\UpdateRequest;
 use App\Http\Resources\ArticleResource;
 use App\Models\Article;
+use App\UseCases\Article\DeleteAction;
 use App\UseCases\Article\FeedAction;
 use App\UseCases\Article\ListAction;
 use App\UseCases\Article\StoreAction;
@@ -70,5 +71,11 @@ class ArticleController extends Controller
         $this->authorize('update', $article);
         $article = $action($request->makeArticle($article));
         return new ArticleResource($article);
+    }
+
+    public function destroy(Article $article, DeleteAction $action)
+    {
+        $this->authorize('delete', $article);
+        return $action($article);
     }
 }
