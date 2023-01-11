@@ -6,6 +6,8 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class CommentCollection extends ResourceCollection
 {
+    public static $wrap = 'comments';
+
     /**
      * Transform the resource collection into an array.
      *
@@ -14,6 +16,6 @@ class CommentCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return CommentResource::collection($this->collection);
     }
 }
