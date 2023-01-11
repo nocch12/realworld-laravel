@@ -9,6 +9,8 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
  */
 class ArticleCollection extends ResourceCollection
 {
+    static public $wrap = "articles";
+
     /**
      * Transform the resource collection into an array.
      *
@@ -17,6 +19,6 @@ class ArticleCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return $this->collection ?? [];
+        return ArticleResource::collection($this->collection);
     }
 }

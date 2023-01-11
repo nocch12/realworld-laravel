@@ -6,6 +6,7 @@ use App\Http\Requests\Article\FeedRequest;
 use App\Http\Requests\Article\ListRequest;
 use App\Http\Requests\Article\StoreRequest;
 use App\Http\Requests\Article\UpdateRequest;
+use App\Http\Resources\ArticleCollection;
 use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use App\UseCases\Article\DeleteAction;
@@ -13,7 +14,7 @@ use App\UseCases\Article\FeedAction;
 use App\UseCases\Article\ListAction;
 use App\UseCases\Article\StoreAction;
 use App\UseCases\Article\UpdateAction;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ArticleController extends Controller
 {
@@ -30,9 +31,9 @@ class ArticleController extends Controller
      *
      * @param ListRequest $request
      * @param ListAction $action
-     * @return AnonymousResourceCollection
+     * @return ResourceCollection
      */
-    public function list(ListRequest $request, ListAction $action): AnonymousResourceCollection
+    public function list(ListRequest $request, ListAction $action): ResourceCollection
     {
         $list = $action(
             $request->validated('tag'),
@@ -42,17 +43,17 @@ class ArticleController extends Controller
             $request->validated('offset', 0),
         );
 
-        return ArticleResource::collection($list);
+        return new ArticleCollection($list);
     }
 
-    public function feed(FeedRequest $request,  FeedAction $action): AnonymousResourceCollection
+    public function feed(FeedRequest $request,  FeedAction $action): ResourceCollection
     {
         $list = $action(
             $request->validated('limit', 20),
             $request->validated('offset', 0),
         );
 
-        return ArticleResource::collection($list);
+        return new ArticleCollection($list);
     }
 
     public function show(Article $article)
