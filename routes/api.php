@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,3 +72,5 @@ Route::prefix('articles')
         Route::post('/{article}/comments', 'store')->name('store');
         Route::delete('/{article}/comments/{comment}', 'destroy')->name('destroy');
     });
+
+Route::get('/tags', [TagController::class, 'list'])->name('tag.list');
