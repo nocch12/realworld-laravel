@@ -28,7 +28,7 @@ class CommentController extends Controller
         return new CommentResource($comment);
     }
 
-    public function destroy(Request $request, Article $article, Comment $comment)
+    public function destroy(Article $article, Comment $comment)
     {
         $this->authorize('delete', $comment);
         return $comment->deleteOrFail();

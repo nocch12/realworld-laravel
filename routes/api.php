@@ -57,6 +57,9 @@ Route::prefix('articles')
         Route::get('/{article}', 'show')->name('show');
         Route::put('/{article}', 'update')->name('update');
         Route::delete('/{article}', 'destroy')->name('destroy');
+
+        Route::post('/{article}/favorite', 'favorite')->name('favorite');
+        Route::delete('/{article}/favorite', 'unfavorite')->name('unfavorite');
     });
 
 // /articles/:slug/comments/*

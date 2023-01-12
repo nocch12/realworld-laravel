@@ -15,6 +15,7 @@ use App\UseCases\Article\ListAction;
 use App\UseCases\Article\StoreAction;
 use App\UseCases\Article\UpdateAction;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -78,5 +79,17 @@ class ArticleController extends Controller
     {
         $this->authorize('delete', $article);
         return $action($article);
+    }
+
+    public function favorite(Article $article)
+    {
+        $article->favoritedUsers()->attach(Auth::user()->id);
+        return new ArticleResource($article->refresh());
+    }
+
+    public function unfavorite(Article $article)
+    {
+        $article->favoritedUsers()->detach(Auth::user()->id);
+        return new ArticleResource($article->refresh());
     }
 }

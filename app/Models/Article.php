@@ -73,7 +73,7 @@ class Article extends Model
      */
     public function favoritedUsers(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'article_favorite', 'user_id', 'article_id');
+        return $this->belongsToMany(User::class, 'article_favorite', 'article_id', 'user_id');
     }
 
     /**
