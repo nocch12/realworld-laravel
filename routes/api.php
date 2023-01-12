@@ -66,5 +66,5 @@ Route::prefix('articles')
     ->group(function () {
         Route::get('/{article}/comments', 'list')->name('list');
         Route::post('/{article}/comments', 'store')->name('store');
-        Route::delete('/{article}/comments/{id}', 'destroy')->name('destroy');
+        Route::delete('/{article}/comments/{comment}', 'destroy')->name('destroy');
     });
