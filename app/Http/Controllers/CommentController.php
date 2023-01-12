@@ -12,6 +12,11 @@ use Request;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['list']);
+    }
+
     public function list(Article $article)
     {
         return new CommentCollection($article->comments);
