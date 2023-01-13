@@ -1931,61 +1931,58 @@
                     /**
          * Get the currently authenticated user.
          *
-         * @return \App\Models\User|null 
+         * @return \PHPOpenSourceSaver\JWTAuth\Authenticatable|null 
          * @static 
          */ 
         public static function user()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->user();
         }
                     /**
          * Get the currently authenticated user or throws an exception.
          *
-         * @return \App\Models\User 
-         * @throws \Tymon\JWTAuth\Exceptions\UserNotDefinedException
+         * @return \PHPOpenSourceSaver\JWTAuth\Authenticatable 
+         * @throws UserNotDefinedException
          * @static 
          */ 
         public static function userOrFail()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->userOrFail();
         }
                     /**
          * Validate a user's credentials.
          *
-         * @param array $credentials
          * @return bool 
          * @static 
          */ 
         public static function validate($credentials = [])
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->validate($credentials);
         }
                     /**
          * Attempt to authenticate the user using the given credentials and return the token.
          *
-         * @param array $credentials
          * @param bool $login
          * @return bool|string 
          * @static 
          */ 
         public static function attempt($credentials = [], $login = true)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->attempt($credentials, $login);
         }
                     /**
          * Create a token for a user.
          *
-         * @param \Tymon\JWTAuth\Contracts\JWTSubject $user
          * @return string 
          * @static 
          */ 
         public static function login($user)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->login($user);
         }
                     /**
@@ -1997,7 +1994,7 @@
          */ 
         public static function logout($forceForever = false)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         $instance->logout($forceForever);
         }
                     /**
@@ -2010,19 +2007,19 @@
          */ 
         public static function refresh($forceForever = false, $resetClaims = false)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->refresh($forceForever, $resetClaims);
         }
                     /**
          * Invalidate the token.
          *
          * @param bool $forceForever
-         * @return \Tymon\JWTAuth\JWT 
+         * @return \PHPOpenSourceSaver\JWTAuth\JWT 
          * @static 
          */ 
         public static function invalidate($forceForever = false)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->invalidate($forceForever);
         }
                     /**
@@ -2034,19 +2031,18 @@
          */ 
         public static function tokenById($id)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->tokenById($id);
         }
                     /**
          * Log a user into the application using their credentials.
          *
-         * @param array $credentials
          * @return bool 
          * @static 
          */ 
         public static function once($credentials = [])
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->once($credentials);
         }
                     /**
@@ -2058,7 +2054,7 @@
          */ 
         public static function onceUsingId($id)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->onceUsingId($id);
         }
                     /**
@@ -2070,133 +2066,141 @@
          */ 
         public static function byId($id)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->byId($id);
         }
                     /**
          * Add any custom claims.
          *
-         * @param array $claims
-         * @return \Tymon\JWTAuth\JWTGuard 
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTGuard 
          * @static 
          */ 
         public static function claims($claims)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->claims($claims);
         }
                     /**
          * Get the raw Payload instance.
          *
-         * @return \Tymon\JWTAuth\Payload 
+         * @return \PHPOpenSourceSaver\JWTAuth\Payload 
          * @static 
          */ 
         public static function getPayload()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->getPayload();
         }
                     /**
          * Alias for getPayload().
          *
-         * @return \Tymon\JWTAuth\Payload 
+         * @return \PHPOpenSourceSaver\JWTAuth\Payload 
          * @static 
          */ 
         public static function payload()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->payload();
         }
                     /**
          * Set the token.
          *
-         * @param \Tymon\JWTAuth\Token|string $token
-         * @return \Tymon\JWTAuth\JWTGuard 
+         * @param \PHPOpenSourceSaver\JWTAuth\Token|string $token
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTGuard 
          * @static 
          */ 
         public static function setToken($token)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->setToken($token);
         }
                     /**
          * Set the token ttl.
          *
-         * @param int $ttl
-         * @return \Tymon\JWTAuth\JWTGuard 
+         * @param int|null $ttl
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTGuard 
          * @static 
          */ 
         public static function setTTL($ttl)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->setTTL($ttl);
         }
                     /**
          * Get the user provider used by the guard.
          *
-         * @return \Illuminate\Contracts\Auth\UserProvider 
+         * @return \PHPOpenSourceSaver\JWTAuth\UserProvider 
          * @static 
          */ 
         public static function getProvider()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->getProvider();
         }
                     /**
          * Set the user provider used by the guard.
          *
-         * @param \Illuminate\Contracts\Auth\UserProvider $provider
-         * @return \Tymon\JWTAuth\JWTGuard 
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTGuard 
          * @static 
          */ 
         public static function setProvider($provider)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->setProvider($provider);
         }
                     /**
          * Return the currently cached user.
          *
-         * @return \App\Models\User|null 
+         * @return \PHPOpenSourceSaver\JWTAuth\Authenticatable|null 
          * @static 
          */ 
         public static function getUser()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->getUser();
+        }
+                    /**
+         * Set the current user.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTGuard 
+         * @static 
+         */ 
+        public static function setUser($user)
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
+                        return $instance->setUser($user);
         }
                     /**
          * Get the current request instance.
          *
-         * @return \Illuminate\Http\Request 
+         * @return \Request 
          * @static 
          */ 
         public static function getRequest()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->getRequest();
         }
                     /**
          * Set the current request instance.
          *
-         * @param \Illuminate\Http\Request $request
-         * @return \Tymon\JWTAuth\JWTGuard 
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTGuard 
          * @static 
          */ 
         public static function setRequest($request)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->setRequest($request);
         }
                     /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \App\Models\User 
+         * @return \PHPOpenSourceSaver\JWTAuth\Authenticatable 
          * @static 
          */ 
         public static function getLastAttempted()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->getLastAttempted();
         }
                     /**
@@ -2208,7 +2212,7 @@
          */ 
         public static function authenticate()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->authenticate();
         }
                     /**
@@ -2219,7 +2223,7 @@
          */ 
         public static function hasUser()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->hasUser();
         }
                     /**
@@ -2230,7 +2234,7 @@
          */ 
         public static function check()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->check();
         }
                     /**
@@ -2241,7 +2245,7 @@
          */ 
         public static function guest()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->guest();
         }
                     /**
@@ -2252,30 +2256,30 @@
          */ 
         public static function id()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->id();
         }
                     /**
          * Set the current user.
          *
          * @param \Illuminate\Contracts\Auth\Authenticatable $user
-         * @return \Tymon\JWTAuth\JWTGuard 
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTGuard 
          * @static 
          */ 
-        public static function setUser($user)
+        public static function guardHelperSetUser($user)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
-                        return $instance->setUser($user);
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
+                        return $instance->guardHelperSetUser($user);
         }
                     /**
          * Forget the current user.
          *
-         * @return \Tymon\JWTAuth\JWTGuard 
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTGuard 
          * @static 
          */ 
         public static function forgetUser()
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->forgetUser();
         }
                     /**
@@ -2288,7 +2292,7 @@
          */ 
         public static function macro($name, $macro)
         {
-                        \Tymon\JWTAuth\JWTGuard::macro($name, $macro);
+                        \PHPOpenSourceSaver\JWTAuth\JWTGuard::macro($name, $macro);
         }
                     /**
          * Mix another object into the class.
@@ -2301,7 +2305,7 @@
          */ 
         public static function mixin($mixin, $replace = true)
         {
-                        \Tymon\JWTAuth\JWTGuard::mixin($mixin, $replace);
+                        \PHPOpenSourceSaver\JWTAuth\JWTGuard::mixin($mixin, $replace);
         }
                     /**
          * Checks if macro is registered.
@@ -2312,7 +2316,7 @@
          */ 
         public static function hasMacro($name)
         {
-                        return \Tymon\JWTAuth\JWTGuard::hasMacro($name);
+                        return \PHPOpenSourceSaver\JWTAuth\JWTGuard::hasMacro($name);
         }
                     /**
          * Flush the existing macros.
@@ -2322,7 +2326,7 @@
          */ 
         public static function flushMacros()
         {
-                        \Tymon\JWTAuth\JWTGuard::flushMacros();
+                        \PHPOpenSourceSaver\JWTAuth\JWTGuard::flushMacros();
         }
                     /**
          * Dynamically handle calls to the class.
@@ -2335,7 +2339,7 @@
          */ 
         public static function macroCall($method, $parameters)
         {
-                        /** @var \Tymon\JWTAuth\JWTGuard $instance */
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTGuard $instance */
                         return $instance->macroCall($method, $parameters);
         }
          
@@ -17566,7 +17570,490 @@
      
 }
 
-        namespace Spatie\LaravelIgnition\Facades { 
+        namespace PHPOpenSourceSaver\JWTAuth\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class JWTAuth {
+                    /**
+         * Attempt to authenticate the user and return the token.
+         *
+         * @return false|string 
+         * @static 
+         */ 
+        public static function attempt($credentials)
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->attempt($credentials);
+        }
+                    /**
+         * Authenticate a user via a token.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject|false 
+         * @static 
+         */ 
+        public static function authenticate()
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->authenticate();
+        }
+                    /**
+         * Alias for authenticate().
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject|false 
+         * @static 
+         */ 
+        public static function toUser()
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->toUser();
+        }
+                    /**
+         * Get the authenticated user.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject 
+         * @static 
+         */ 
+        public static function user()
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->user();
+        }
+                    /**
+         * Generate a token for a given subject.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function fromSubject($subject)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->fromSubject($subject);
+        }
+                    /**
+         * Alias to generate a token for a given user.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function fromUser($user)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->fromUser($user);
+        }
+                    /**
+         * Refresh an expired token.
+         *
+         * @param bool $forceForever
+         * @param bool $resetClaims
+         * @return string 
+         * @static 
+         */ 
+        public static function refresh($forceForever = false, $resetClaims = false)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->refresh($forceForever, $resetClaims);
+        }
+                    /**
+         * Invalidate a token (add it to the blacklist).
+         *
+         * @param bool $forceForever
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTAuth 
+         * @static 
+         */ 
+        public static function invalidate($forceForever = false)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->invalidate($forceForever);
+        }
+                    /**
+         * Alias to get the payload, and as a result checks that
+         * the token is valid i.e. not expired or blacklisted.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Payload 
+         * @throws JWTException
+         * @static 
+         */ 
+        public static function checkOrFail()
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->checkOrFail();
+        }
+                    /**
+         * Check that the token is valid.
+         *
+         * @param bool $getPayload
+         * @return \PHPOpenSourceSaver\JWTAuth\Payload|bool 
+         * @static 
+         */ 
+        public static function check($getPayload = false)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->check($getPayload);
+        }
+                    /**
+         * Get the token.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Token|null 
+         * @static 
+         */ 
+        public static function getToken()
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->getToken();
+        }
+                    /**
+         * Parse the token from the request.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTAuth 
+         * @throws JWTException
+         * @static 
+         */ 
+        public static function parseToken()
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->parseToken();
+        }
+                    /**
+         * Get the raw Payload instance.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function getPayload()
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->getPayload();
+        }
+                    /**
+         * Alias for getPayload().
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function payload()
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->payload();
+        }
+                    /**
+         * Convenience method to get a claim value.
+         *
+         * @param string $claim
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getClaim($claim)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->getClaim($claim);
+        }
+                    /**
+         * Create a Payload instance.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function makePayload($subject)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->makePayload($subject);
+        }
+                    /**
+         * Check if the subject model matches the one saved in the token.
+         *
+         * @param string|object $model
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkSubjectModel($model)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->checkSubjectModel($model);
+        }
+                    /**
+         * Set the token.
+         *
+         * @param \PHPOpenSourceSaver\JWTAuth\Token|string $token
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTAuth 
+         * @static 
+         */ 
+        public static function setToken($token)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->setToken($token);
+        }
+                    /**
+         * Unset the current token.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTAuth 
+         * @static 
+         */ 
+        public static function unsetToken()
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->unsetToken();
+        }
+                    /**
+         * Set the request instance.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTAuth 
+         * @static 
+         */ 
+        public static function setRequest($request)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->setRequest($request);
+        }
+                    /**
+         * Set whether the subject should be "locked".
+         *
+         * @param bool $lock
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTAuth 
+         * @static 
+         */ 
+        public static function lockSubject($lock)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->lockSubject($lock);
+        }
+                    /**
+         * Get the Manager instance.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Manager 
+         * @static 
+         */ 
+        public static function manager()
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->manager();
+        }
+                    /**
+         * Get the Parser instance.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Http\Parser\Parser 
+         * @static 
+         */ 
+        public static function parser()
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->parser();
+        }
+                    /**
+         * Get the Payload Factory.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Factory 
+         * @static 
+         */ 
+        public static function factory()
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->factory();
+        }
+                    /**
+         * Get the Blacklist.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Blacklist 
+         * @static 
+         */ 
+        public static function blacklist()
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->blacklist();
+        }
+                    /**
+         * Set the custom claims.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTAuth 
+         * @static 
+         */ 
+        public static function customClaims($customClaims)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->customClaims($customClaims);
+        }
+                    /**
+         * Alias to set the custom claims.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\JWTAuth 
+         * @static 
+         */ 
+        public static function claims($customClaims)
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->claims($customClaims);
+        }
+                    /**
+         * Get the custom claims.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCustomClaims()
+        {            //Method inherited from \PHPOpenSourceSaver\JWTAuth\JWT         
+                        /** @var \PHPOpenSourceSaver\JWTAuth\JWTAuth $instance */
+                        return $instance->getCustomClaims();
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class JWTFactory {
+                    /**
+         * Create the Payload instance.
+         *
+         * @param bool $resetClaims
+         * @return \PHPOpenSourceSaver\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function make($resetClaims = false)
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->make($resetClaims);
+        }
+                    /**
+         * Empty the claims collection.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Factory 
+         * @static 
+         */ 
+        public static function emptyClaims()
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->emptyClaims();
+        }
+                    /**
+         * Build and get the Claims Collection.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Claims\Collection 
+         * @static 
+         */ 
+        public static function buildClaimsCollection()
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->buildClaimsCollection();
+        }
+                    /**
+         * Get a Payload instance with a claims collection.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Payload 
+         * @static 
+         */ 
+        public static function withClaims($claims)
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->withClaims($claims);
+        }
+                    /**
+         * Set the default claims to be added to the Payload.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Factory 
+         * @static 
+         */ 
+        public static function setDefaultClaims($claims)
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->setDefaultClaims($claims);
+        }
+                    /**
+         * Helper to set the ttl.
+         *
+         * @param int|null $ttl
+         * @return \PHPOpenSourceSaver\JWTAuth\Factory 
+         * @static 
+         */ 
+        public static function setTTL($ttl)
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->setTTL($ttl);
+        }
+                    /**
+         * Helper to get the ttl.
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function getTTL()
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->getTTL();
+        }
+                    /**
+         * Get the default claims.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getDefaultClaims()
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->getDefaultClaims();
+        }
+                    /**
+         * Get the PayloadValidator instance.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Validators\PayloadValidator 
+         * @static 
+         */ 
+        public static function validator()
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->validator();
+        }
+                    /**
+         * Set the custom claims.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Factory 
+         * @static 
+         */ 
+        public static function customClaims($customClaims)
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->customClaims($customClaims);
+        }
+                    /**
+         * Alias to set the custom claims.
+         *
+         * @return \PHPOpenSourceSaver\JWTAuth\Factory 
+         * @static 
+         */ 
+        public static function claims($customClaims)
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->claims($customClaims);
+        }
+                    /**
+         * Get the custom claims.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCustomClaims()
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->getCustomClaims();
+        }
+                    /**
+         * Set the refresh flow flag.
+         *
+         * @param bool $refreshFlow
+         * @return \PHPOpenSourceSaver\JWTAuth\Factory 
+         * @static 
+         */ 
+        public static function setRefreshFlow($refreshFlow = true)
+        {
+                        /** @var \PHPOpenSourceSaver\JWTAuth\Factory $instance */
+                        return $instance->setRefreshFlow($refreshFlow);
+        }
+         
+    }
+     
+}
+
+    namespace Spatie\LaravelIgnition\Facades { 
             /**
      * 
      *
@@ -17948,500 +18435,6 @@
         {
                         /** @var \Spatie\FlareClient\Flare $instance */
                         return $instance->group($groupName, $properties);
-        }
-         
-    }
-     
-}
-
-    namespace Tymon\JWTAuth\Facades { 
-            /**
-     * 
-     *
-     */ 
-        class JWTAuth {
-                    /**
-         * Attempt to authenticate the user and return the token.
-         *
-         * @param array $credentials
-         * @return false|string 
-         * @static 
-         */ 
-        public static function attempt($credentials)
-        {
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->attempt($credentials);
-        }
-                    /**
-         * Authenticate a user via a token.
-         *
-         * @return \Tymon\JWTAuth\Contracts\JWTSubject|false 
-         * @static 
-         */ 
-        public static function authenticate()
-        {
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->authenticate();
-        }
-                    /**
-         * Alias for authenticate().
-         *
-         * @return \Tymon\JWTAuth\Contracts\JWTSubject|false 
-         * @static 
-         */ 
-        public static function toUser()
-        {
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->toUser();
-        }
-                    /**
-         * Get the authenticated user.
-         *
-         * @return \Tymon\JWTAuth\Contracts\JWTSubject 
-         * @static 
-         */ 
-        public static function user()
-        {
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->user();
-        }
-                    /**
-         * Generate a token for a given subject.
-         *
-         * @param \Tymon\JWTAuth\Contracts\JWTSubject $subject
-         * @return string 
-         * @static 
-         */ 
-        public static function fromSubject($subject)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->fromSubject($subject);
-        }
-                    /**
-         * Alias to generate a token for a given user.
-         *
-         * @param \Tymon\JWTAuth\Contracts\JWTSubject $user
-         * @return string 
-         * @static 
-         */ 
-        public static function fromUser($user)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->fromUser($user);
-        }
-                    /**
-         * Refresh an expired token.
-         *
-         * @param bool $forceForever
-         * @param bool $resetClaims
-         * @return string 
-         * @static 
-         */ 
-        public static function refresh($forceForever = false, $resetClaims = false)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->refresh($forceForever, $resetClaims);
-        }
-                    /**
-         * Invalidate a token (add it to the blacklist).
-         *
-         * @param bool $forceForever
-         * @return \Tymon\JWTAuth\JWTAuth 
-         * @static 
-         */ 
-        public static function invalidate($forceForever = false)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->invalidate($forceForever);
-        }
-                    /**
-         * Alias to get the payload, and as a result checks that
-         * the token is valid i.e. not expired or blacklisted.
-         *
-         * @return \Tymon\JWTAuth\Payload 
-         * @throws \Tymon\JWTAuth\Exceptions\JWTException
-         * @static 
-         */ 
-        public static function checkOrFail()
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->checkOrFail();
-        }
-                    /**
-         * Check that the token is valid.
-         *
-         * @param bool $getPayload
-         * @return \Tymon\JWTAuth\Payload|bool 
-         * @static 
-         */ 
-        public static function check($getPayload = false)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->check($getPayload);
-        }
-                    /**
-         * Get the token.
-         *
-         * @return \Tymon\JWTAuth\Token|null 
-         * @static 
-         */ 
-        public static function getToken()
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->getToken();
-        }
-                    /**
-         * Parse the token from the request.
-         *
-         * @return \Tymon\JWTAuth\JWTAuth 
-         * @throws \Tymon\JWTAuth\Exceptions\JWTException
-         * @static 
-         */ 
-        public static function parseToken()
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->parseToken();
-        }
-                    /**
-         * Get the raw Payload instance.
-         *
-         * @return \Tymon\JWTAuth\Payload 
-         * @static 
-         */ 
-        public static function getPayload()
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->getPayload();
-        }
-                    /**
-         * Alias for getPayload().
-         *
-         * @return \Tymon\JWTAuth\Payload 
-         * @static 
-         */ 
-        public static function payload()
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->payload();
-        }
-                    /**
-         * Convenience method to get a claim value.
-         *
-         * @param string $claim
-         * @return mixed 
-         * @static 
-         */ 
-        public static function getClaim($claim)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->getClaim($claim);
-        }
-                    /**
-         * Create a Payload instance.
-         *
-         * @param \Tymon\JWTAuth\Contracts\JWTSubject $subject
-         * @return \Tymon\JWTAuth\Payload 
-         * @static 
-         */ 
-        public static function makePayload($subject)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->makePayload($subject);
-        }
-                    /**
-         * Check if the subject model matches the one saved in the token.
-         *
-         * @param string|object $model
-         * @return bool 
-         * @static 
-         */ 
-        public static function checkSubjectModel($model)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->checkSubjectModel($model);
-        }
-                    /**
-         * Set the token.
-         *
-         * @param \Tymon\JWTAuth\Token|string $token
-         * @return \Tymon\JWTAuth\JWTAuth 
-         * @static 
-         */ 
-        public static function setToken($token)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->setToken($token);
-        }
-                    /**
-         * Unset the current token.
-         *
-         * @return \Tymon\JWTAuth\JWTAuth 
-         * @static 
-         */ 
-        public static function unsetToken()
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->unsetToken();
-        }
-                    /**
-         * Set the request instance.
-         *
-         * @param \Illuminate\Http\Request $request
-         * @return \Tymon\JWTAuth\JWTAuth 
-         * @static 
-         */ 
-        public static function setRequest($request)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->setRequest($request);
-        }
-                    /**
-         * Set whether the subject should be "locked".
-         *
-         * @param bool $lock
-         * @return \Tymon\JWTAuth\JWTAuth 
-         * @static 
-         */ 
-        public static function lockSubject($lock)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->lockSubject($lock);
-        }
-                    /**
-         * Get the Manager instance.
-         *
-         * @return \Tymon\JWTAuth\Manager 
-         * @static 
-         */ 
-        public static function manager()
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->manager();
-        }
-                    /**
-         * Get the Parser instance.
-         *
-         * @return \Tymon\JWTAuth\Http\Parser\Parser 
-         * @static 
-         */ 
-        public static function parser()
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->parser();
-        }
-                    /**
-         * Get the Payload Factory.
-         *
-         * @return \Tymon\JWTAuth\Factory 
-         * @static 
-         */ 
-        public static function factory()
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->factory();
-        }
-                    /**
-         * Get the Blacklist.
-         *
-         * @return \Tymon\JWTAuth\Blacklist 
-         * @static 
-         */ 
-        public static function blacklist()
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->blacklist();
-        }
-                    /**
-         * Set the custom claims.
-         *
-         * @param array $customClaims
-         * @return \Tymon\JWTAuth\JWTAuth 
-         * @static 
-         */ 
-        public static function customClaims($customClaims)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->customClaims($customClaims);
-        }
-                    /**
-         * Alias to set the custom claims.
-         *
-         * @param array $customClaims
-         * @return \Tymon\JWTAuth\JWTAuth 
-         * @static 
-         */ 
-        public static function claims($customClaims)
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->claims($customClaims);
-        }
-                    /**
-         * Get the custom claims.
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getCustomClaims()
-        {            //Method inherited from \Tymon\JWTAuth\JWT         
-                        /** @var \Tymon\JWTAuth\JWTAuth $instance */
-                        return $instance->getCustomClaims();
-        }
-         
-    }
-            /**
-     * 
-     *
-     */ 
-        class JWTFactory {
-                    /**
-         * Create the Payload instance.
-         *
-         * @param bool $resetClaims
-         * @return \Tymon\JWTAuth\Payload 
-         * @static 
-         */ 
-        public static function make($resetClaims = false)
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->make($resetClaims);
-        }
-                    /**
-         * Empty the claims collection.
-         *
-         * @return \Tymon\JWTAuth\Factory 
-         * @static 
-         */ 
-        public static function emptyClaims()
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->emptyClaims();
-        }
-                    /**
-         * Build and get the Claims Collection.
-         *
-         * @return \Tymon\JWTAuth\Claims\Collection 
-         * @static 
-         */ 
-        public static function buildClaimsCollection()
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->buildClaimsCollection();
-        }
-                    /**
-         * Get a Payload instance with a claims collection.
-         *
-         * @param \Tymon\JWTAuth\Claims\Collection $claims
-         * @return \Tymon\JWTAuth\Payload 
-         * @static 
-         */ 
-        public static function withClaims($claims)
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->withClaims($claims);
-        }
-                    /**
-         * Set the default claims to be added to the Payload.
-         *
-         * @param array $claims
-         * @return \Tymon\JWTAuth\Factory 
-         * @static 
-         */ 
-        public static function setDefaultClaims($claims)
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->setDefaultClaims($claims);
-        }
-                    /**
-         * Helper to set the ttl.
-         *
-         * @param int $ttl
-         * @return \Tymon\JWTAuth\Factory 
-         * @static 
-         */ 
-        public static function setTTL($ttl)
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->setTTL($ttl);
-        }
-                    /**
-         * Helper to get the ttl.
-         *
-         * @return int 
-         * @static 
-         */ 
-        public static function getTTL()
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->getTTL();
-        }
-                    /**
-         * Get the default claims.
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getDefaultClaims()
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->getDefaultClaims();
-        }
-                    /**
-         * Get the PayloadValidator instance.
-         *
-         * @return \Tymon\JWTAuth\Validators\PayloadValidator 
-         * @static 
-         */ 
-        public static function validator()
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->validator();
-        }
-                    /**
-         * Set the custom claims.
-         *
-         * @param array $customClaims
-         * @return \Tymon\JWTAuth\Factory 
-         * @static 
-         */ 
-        public static function customClaims($customClaims)
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->customClaims($customClaims);
-        }
-                    /**
-         * Alias to set the custom claims.
-         *
-         * @param array $customClaims
-         * @return \Tymon\JWTAuth\Factory 
-         * @static 
-         */ 
-        public static function claims($customClaims)
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->claims($customClaims);
-        }
-                    /**
-         * Get the custom claims.
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getCustomClaims()
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->getCustomClaims();
-        }
-                    /**
-         * Set the refresh flow flag.
-         *
-         * @param bool $refreshFlow
-         * @return \Tymon\JWTAuth\Factory 
-         * @static 
-         */ 
-        public static function setRefreshFlow($refreshFlow = true)
-        {
-                        /** @var \Tymon\JWTAuth\Factory $instance */
-                        return $instance->setRefreshFlow($refreshFlow);
         }
          
     }
@@ -22283,9 +22276,9 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class JWTAuth extends \PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth {}
+            class JWTFactory extends \PHPOpenSourceSaver\JWTAuth\Facades\JWTFactory {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
-            class JWTAuth extends \Tymon\JWTAuth\Facades\JWTAuth {}
-            class JWTFactory extends \Tymon\JWTAuth\Facades\JWTFactory {}
      
 }
 
